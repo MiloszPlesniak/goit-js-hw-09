@@ -1,15 +1,52 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
-const timer = document.querySelector('.timer')
 const input = document.querySelector('#datetime-picker')
 const btn = document.querySelector('button')
-const days = document.querySelector('span[date-days]')
-const hours = document.querySelector('span[date-hours]')
-const minutes = document.querySelector('span[date-minutes]')
-const seconds = document.querySelector('span[date-seconds]')
+const days = document.querySelector('span[data-days]')
+const hours = document.querySelector('span[data-hours]')
+const minutes = document.querySelector('span[data-minutes]')
+const seconds = document.querySelector('span[data-seconds]')
+const timer = document.querySelector('.timer')
+const timerValue = document.querySelectorAll('.value')
+const timerText = document.querySelectorAll('.label')
+const timerItem = document.querySelectorAll('.field')
+timerText.forEach(function (e,) {
+    e.style.display = 'flex'
+
+
+    e.style.fontSize = '20px'
+    e.style.lineHeight = '0'
+    e.style.justifyContent = 'center'
+});
+timerValue.forEach(function (e) {
+    e.style.fontSize = '35px'
+    e.style.display = 'flex'
+    e.style.justifyContent = 'center'
+
+})
+timer.style.display = 'flex'
+timerItem.forEach(element => {
+    element.style.padding = '5px'
+});
+
+
 
 
 btn.setAttribute('disabled', 'disabled')
+const d = {
+    day: 1,
+    hour: 23,
+    minutes: 2,
+    seconds: 45
+}
+
+function addLeadingZero(value) {
+    if (value.length < 2) {
+      return  value.padStart(2, '0')
+    }
+    return value
+}
+
 
 function convertMs(ms) {
     // Number of milliseconds per unit of time
@@ -36,11 +73,13 @@ const currentDate = () => {
     let date = new Date().getTime()
     return date
 }
-const setTimer = (time) => {
-    days.textContent = time.days
-    hours.textContent = time.hours
-    minutes.textContent = time.minutes
-    seconds.textContent = time.seconds
+const setTimer = (timer, days, hours, minutes, seconds, addZero) => {
+    days.textContent = addZero(String(timer.days))
+    hours.textContent = addZero(String(timer.hours))
+    minutes.textContent = addZero(String(timer.minutes))
+    seconds.textContent = addZero(String(timer.seconds))
+    
+    
 }
 
 const options = {
@@ -57,15 +96,17 @@ const options = {
             btn.removeAttribute('disabled')
             btn.addEventListener('click', () => {
                 myTimer = setInterval(() => {
-                    let timer =convertMs(selectedDates[0].getTime() - currentDate())
-                    if (timer.seconds === 0) {
+                    let timer = convertMs(selectedDates[0].getTime() - currentDate())
+                    if (selectedDates[0].getTime() - currentDate() < 500) {
                         clearInterval(myTimer)
                     } else {
                         console.log(timer)
+                        setTimer(timer, days, hours, minutes, seconds, addLeadingZero)
                     }
-                    
-                    
+
+
                 }, 1000);
+
 
             })
         }
