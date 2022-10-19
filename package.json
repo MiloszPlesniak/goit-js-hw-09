@@ -1,8 +1,8 @@
 {
-  "name": "parcel-project-template",
+  "name": "goit-js-hw-09",
   "version": "2.0.0",
-  "description": "",
-  "homepage": "https://MiloszPlesniak.github.io/goit-js-hw-09",
+  "description": "**Read in other languages: [Русский](README.md), [Polski](README.pl.md).**",
+  "homepage": "https://MiloszPlesniak.github.io/goit-js-hw-09/",
   "scripts": {
     "start": "parcel src/*.html",
     "build": "parcel build src/*.html --public-url /goit-js-hw-09/"
@@ -19,8 +19,7 @@
   },
   "dependencies": {
     "flatpickr": "^4.6.13",
-    "modern-normalize": "^1.1.0",
-    "notiflix": "^3.2.5"
+    "modern-normalize": "^1.1.0"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.0",
