@@ -43,7 +43,7 @@ const d = {
 
 function addLeadingZero(value) {
     if (value.length < 2) {
-      return  value.padStart(2, '0')
+        return value.padStart(2, '0')
     }
     return value
 }
@@ -79,8 +79,8 @@ const setTimer = (timer, days, hours, minutes, seconds, addZero) => {
     hours.textContent = addZero(String(timer.hours))
     minutes.textContent = addZero(String(timer.minutes))
     seconds.textContent = addZero(String(timer.seconds))
-    
-    
+
+
 }
 
 const options = {
@@ -98,7 +98,7 @@ const options = {
             btn.addEventListener('click', () => {
                 myTimer = setInterval(() => {
                     let timer = convertMs(selectedDates[0].getTime() - currentDate())
-                    if (selectedDates[0].getTime() - currentDate() < 500) {
+                    if (selectedDates[0].getTime() - currentDate() < 0) {
                         clearInterval(myTimer)
                     } else {
                         setTimer(timer, days, hours, minutes, seconds, addLeadingZero)
